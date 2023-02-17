@@ -1,4 +1,5 @@
 
+import 'package:arosaje/screens/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -17,17 +18,17 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your name';
@@ -39,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your email address';
@@ -51,7 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -63,14 +64,17 @@ class _SignUpPageState extends State<SignUpPage> {
                   _password = value;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16.0,
               ),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // TODO: Implement sign up logic
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => SignInPage()),
+                    );
                   }
                 },
                 child: Text('Sign Up'),

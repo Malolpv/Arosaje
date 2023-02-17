@@ -1,3 +1,4 @@
+import 'package:arosaje/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -15,17 +16,17 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign In'),
+        title: const Text('Sign In'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your email address';
@@ -37,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -49,17 +50,20 @@ class _SignInPageState extends State<SignInPage> {
                   _password = value;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16.0,
               ),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // TODO: Implement sign in logic
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
                   }
                 },
-                child: Text('Sign In'),
+                child: const Text('Sign In'),
               ),
             ],
           ),
