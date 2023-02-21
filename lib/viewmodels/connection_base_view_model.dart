@@ -1,3 +1,4 @@
+import 'package:arosaje/viewmodels/base_view_model.dart';
 abstract class ConnectionBaseViewModel extends BaseViewModel{
   
   
