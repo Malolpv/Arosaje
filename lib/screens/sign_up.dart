@@ -1,5 +1,5 @@
-
 import 'package:arosaje/screens/sign_in.dart';
+import 'package:arosaje/viewmodels/signin_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -72,8 +72,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => SignInPage()),
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SignInPage(SignInViewModel())),
                     );
                   }
                 },

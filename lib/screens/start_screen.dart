@@ -1,3 +1,4 @@
+import 'package:arosaje/viewmodels/signin_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'sign_in.dart';
 import 'sign_up.dart';
@@ -9,18 +10,17 @@ class StartScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Arosaje'),
       ),
-      body: 
-      Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
               'Arosaje',
               style: TextStyle(
-                fontSize: 24, 
-                fontWeight: FontWeight.bold, 
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
                 color: Colors.green,
-                ),
+              ),
             ),
             SizedBox(
               height: 50,
@@ -28,9 +28,10 @@ class StartScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInPage()),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SignInPage(SignInViewModel())),
+                  );
                 },
                 child: const Text('Sign In'),
               ),
@@ -42,9 +43,9 @@ class StartScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                  );
                 },
                 child: const Text('Sign Up'),
               ),
