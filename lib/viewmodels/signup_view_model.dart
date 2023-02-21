@@ -1,3 +1,5 @@
+import 'package:arosaje/viewmodels/connection_base_view_model.dart';
+
 class SignUpViewModel extends ConnectionBaseViewModel{
   
   //attributes
