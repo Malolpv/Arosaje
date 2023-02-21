@@ -1,3 +1,5 @@
+import 'package:arosaje/viewmodels/base_view_model.dart';
+
 class PlantDetailViewModel extends BaseViewModel{
   
   //attributes 
