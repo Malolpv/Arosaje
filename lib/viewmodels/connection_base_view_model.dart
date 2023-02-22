@@ -1,79 +1,80 @@
 import 'package:arosaje/viewmodels/base_view_model.dart';
-abstract class ConnectionBaseViewModel extends BaseViewModel{
-  
-  
+import 'package:meta/meta.dart';
+
+abstract class ConnectionBaseViewModel extends BaseViewModel {
   //attributes
-  String? _email;
-  String? _password;
-  
+  @protected
+  String? email;
+  @protected
+  String? password;
+
   //accessors
-  String? get email => _email;
-  String? get password => _password;
-  
+  String? get getEmail => email;
+  String? get getPassword => password;
+
   //utils
-  
-  //errors attributes & accessors 
-  String? _emailErrorMessage;
-  String? get emailErrorMessage => _emailErrorMessage;
-  
-  String? _passwordErrorMessage;
-  String? get passwordErrorMessage => _passwordErrorMessage;
-  
-  
+
+  //errors attributes & accessors
+  @protected
+  String? emailErrorMessage;
+  @protected
+  String? get getEmailErrorMessage => emailErrorMessage;
+
+  String? passwordErrorMessage;
+  String? get getPasswordErrorMessage => passwordErrorMessage;
+
   //methods
-  void emailChanged(String? newEmail){
-    _email = newEmail;
+  void emailChanged(String? newEmail) {
+    email = newEmail;
   }
-  
-  void passwordChanged(String? newPassword){
-    _password = newPassword;
+
+  void passwordChanged(String? newPassword) {
+    password = newPassword;
   }
-  
-  bool manageEmailValidation(String email){
+
+  bool manageEmailValidation(String email) {
     bool isValid = false;
-    
-    if(email.isEmpty){
-       _emailErrorMessage = "Email cannot be empty";
-    }
-    else if(!email.contains("@")){
-      _emailErrorMessage = "Email must contain '@'";
-    }
-    else if (!RegExp("/^[a-zA-Z0-9.!#\$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*\$/").hasMatch(email)){
-      _emailErrorMessage = "Invalid Email";
-    }
-    else{
-      isValid = true; 
-    }
-     
-    return isValid;
-  }
-  
-  bool managePasswordValidation(String password){
-    bool isValid = false;
-    
-    if(password.isEmpty){
-      _passwordErrorMessage = "Password cannot be empty"; 
-    }
-    else{
+
+    if (email.isEmpty) {
+      emailErrorMessage = "Email cannot be empty";
+    } else if (!email.contains("@")) {
+      emailErrorMessage = "Email must contain '@'";
+    } else if (!RegExp(
+            "/^[a-zA-Z0-9.!#\$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*\$/")
+        .hasMatch(email)) {
+      emailErrorMessage = "Invalid Email";
+    } else {
       isValid = true;
     }
-    
+
     return isValid;
   }
-  
+
+  bool managePasswordValidation(String password) {
+    bool isValid = false;
+
+    if (password.isEmpty) {
+      passwordErrorMessage = "Password cannot be empty";
+    } else {
+      isValid = true;
+    }
+
+    return isValid;
+  }
+
   void submit() async {
-    _isLoading = true;
+    isLoading = true;
     //notifyListeners();
-    final email = _email;
-    final password = _password;
-    if(email != null && password != null){
-      if(manageEmailValidation(email) && managePasswordValidation(password)){
+    final email = this.email;
+    final password = this.password;
+    if (email != null && password != null) {
+      if (manageEmailValidation(email) && managePasswordValidation(password)) {
         //TODO api call to retrieve user datas
         await Future.delayed(Duration(seconds: 2));
-      }  
+      }
     }
-    
-    _isLoading = false;
+
+    isLoading = false;
     //notifyListeners();
   }
 }

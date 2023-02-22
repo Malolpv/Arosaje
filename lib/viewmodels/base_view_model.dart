@@ -1,16 +1,20 @@
-abstract class BaseViewModel{
+import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
+
+abstract class BaseViewModel extends ChangeNotifier {
   //TODO extends ChangeNotifier
-  
+
   //attributes
-  
+
   //utils
-  bool _isLoading = false;
-  bool get isLoading => _isLoading; 
+  @protected
+  bool isLoading = false;
+  bool get getIsLoading => isLoading;
 
   //errors
-  String? _errorMessage;
-  String? get errorMessage => _errorMessage;
-  
+  @protected
+  String? errorMessage;
+  String? get getErrorMessage => errorMessage;
+
   //methods
-  
 }

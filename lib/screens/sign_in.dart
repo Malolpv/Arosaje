@@ -35,7 +35,7 @@ class _SignInPageState extends State<SignInPage> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           labelText: 'Email',
-                          errorText: widget._viewModel.emailErrorMessage),
+                          errorText: widget._viewModel.getEmailErrorMessage),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your email address';
@@ -47,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
                     TextFormField(
                       decoration: InputDecoration(
                           labelText: 'Password',
-                          errorText: widget._viewModel.passwordErrorMessage),
+                          errorText: widget._viewModel.getPasswordErrorMessage),
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
