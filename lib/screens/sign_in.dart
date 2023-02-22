@@ -1,4 +1,5 @@
 import 'package:arosaje/screens/home_screen.dart';
+import 'package:arosaje/viewmodels/home_view_model.dart';
 import 'package:arosaje/viewmodels/signin_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -67,11 +68,12 @@ class _SignInPageState extends State<SignInPage> {
                             _formKey.currentState!.save();
                             widget._viewModel.signIn();
 
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => HomeScreen()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      HomeScreen(HomeViewModel())),
+                            );
                           }
                         },
                         child: const Text('Sign In'),

@@ -1,5 +1,7 @@
+import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
+import 'package:arosaje/widgets/plant_list.dart';
 
 class HomeViewModel extends BaseViewModel {
   //TODO ADD SERVICE CALL TO RETRIEVE DATA
@@ -27,10 +29,12 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void fetchPlantList() async {
+  Future<List<Plant>> fetchPlantList() async {
     //TODO EDIT WITH AN API CALL
-    _plantList = [];
-
+    _plantList = [
+      Plant(1, "test", DateTime.now(), Picture(), List.from(<Picture>[]))
+    ];
     notifyListeners();
+    return Future.value(_plantList);
   }
 }
