@@ -1,22 +1,32 @@
 import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
+import 'package:arosaje/models/user.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
-import 'package:arosaje/widgets/plant_list.dart';
+
+abstract class HomeRouter {
+  displayPlantDetails();
+}
 
 class HomeViewModel extends BaseViewModel {
   //TODO ADD SERVICE CALL TO RETRIEVE DATA
 
   //attributes
+  final User _user;
   List<Plant> _plantList = [];
   List<Plant> get plantList => _plantList;
+
+  //utils
+  final HomeRouter _router;
+
+  //constructors
+  HomeViewModel(this._user, this._router);
 
   //errors
 
   //methods
 
-  void plantTaped(int index) {
-    //TODO redirect to the detail page
-    //Navigator.push(context,MaterialPageRoute(builder: (context) => const PlantDetailView(PlantDetailViewModel(_plantList[index])))
+  void onPlantTaped(int index) {
+    _router.displayPlantDetails();
   }
 
   void refreshPlantList() async {

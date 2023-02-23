@@ -26,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50))),
           child: ElevatedButton(
-              onPressed: () {
-                //TODO AJOUTER UNE REDIRECTION VERS LA CREATION D'UNE PLANTE
-                throw Exception("Not Implemented");
-              },
+              onPressed: () {},
               child: const Text(
                 "+",
                 style: TextStyle(fontSize: 30),
@@ -54,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       return GestureDetector(
                         onTap: () {
-                          throw Exception("Not implemented");
+                          widget._viewModel.onPlantTaped(index);
                         },
                         child: Container(
                           decoration: BoxDecoration(
