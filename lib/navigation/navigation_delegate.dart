@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 
 class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
-    implements HomeRouter {
+    implements HomeRouter, SignInRouter {
   User? _currentUser;
 
   bool _displayPlantDetails = false;
@@ -23,7 +23,7 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
     final user = _currentUser;
 
     if (user == null) {
-      final startPage = SignInPage(SignInViewModel());
+      final startPage = SignInPage(SignInViewModel(this));
       pages.add(MaterialPage(child: startPage));
     } else {
       //TODO passer Le user au view model
@@ -77,6 +77,18 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   @override
   displayPlantDetails() {
     _displayPlantDetails = true;
+    notifyListeners();
+  }
+
+  @override
+  onLogin(User user) {
+    _currentUser = user;
+    notifyListeners();
+  }
+
+  @override
+  onLogout() {
+    _currentUser = null;
     notifyListeners();
   }
 }

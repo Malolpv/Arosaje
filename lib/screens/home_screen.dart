@@ -1,6 +1,5 @@
 import 'package:arosaje/viewmodels/home_view_model.dart';
 import 'package:arosaje/widgets/custom_app_bar.dart';
-import 'package:arosaje/widgets/plant_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +14,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Mes Plantes"),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text(
+          "Mes Plantes",
+        ),
+        actions: [
+          IconButton(
+            //TODO IMPLEMENTER ICONE ACCOUNT
+            onPressed: () => throw Exception(),
+            icon: const Icon(Icons.account_circle),
+          ),
+          IconButton(
+              onPressed: () => widget._viewModel.onLogout(),
+              icon: const Icon(Icons.logout))
+        ],
+        centerTitle: true,
+      ),
       body: Column(children: [
         Container(
           width: MediaQuery.of(context).size.width,

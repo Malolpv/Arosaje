@@ -1,7 +1,18 @@
+import 'package:arosaje/models/user.dart';
+import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/connection_base_view_model.dart';
+
+abstract class SignInRouter {
+  onLogin(User user);
+}
 
 class SignInViewModel extends ConnectionBaseViewModel {
   //attributes
+  final RemoteDataManager _remoteDataManager = RemoteDataManager();
+  final SignInRouter _router;
+
+  //Constructors
+  SignInViewModel(this._router);
 
   //utils
 
@@ -49,12 +60,13 @@ class SignInViewModel extends ConnectionBaseViewModel {
         notifyListeners();
 
         await Future.delayed(const Duration(seconds: 2));
-
+        User? user = await _remoteDataManager.getUserByMailAndPass(email, pass);
+        if (user != null) {
+          _router.onLogin(user);
+        } else {
+          errorMessage = "Impossible de retrouver votre compte";
+        }
         isLoading = false;
-        errorMessage = getPassword == "ok"
-            ? "Welcome $email"
-            : "Impossible de retrouver votre compte";
-
         notifyListeners();
       }
     }

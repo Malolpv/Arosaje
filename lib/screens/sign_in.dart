@@ -68,12 +68,12 @@ class _SignInPageState extends State<SignInPage> {
                             _formKey.currentState!.save();
                             widget._viewModel.signIn();
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(HomeViewModel())),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           HomeScreen(HomeViewModel())),
+                            // );
                           }
                         },
                         child: const Text('Sign In'),

@@ -27,11 +27,11 @@ class StartScreen extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SignInPage(SignInViewModel())),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => SignInPage(SignInViewModel())),
+                  // );
                 },
                 child: const Text('Sign In'),
               ),

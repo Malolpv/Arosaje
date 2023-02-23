@@ -5,6 +5,7 @@ import 'package:arosaje/viewmodels/base_view_model.dart';
 
 abstract class HomeRouter {
   displayPlantDetails();
+  onLogout();
 }
 
 class HomeViewModel extends BaseViewModel {
@@ -46,5 +47,9 @@ class HomeViewModel extends BaseViewModel {
     ];
     notifyListeners();
     return Future.value(_plantList);
+  }
+
+  void onLogout() {
+    _router.onLogout();
   }
 }

@@ -71,11 +71,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SignInPage(SignInViewModel())),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => SignInPage(SignInViewModel())),
+                    // );
                   }
                 },
                 child: Text('Sign Up'),
