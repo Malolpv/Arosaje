@@ -1,7 +1,6 @@
 import 'package:arosaje/navigation/navigation_delegate.dart';
 import 'package:arosaje/navigation/navigation_route_parser.dart';
 import 'package:flutter/material.dart';
-import 'screens/start_screen.dart';
 
 void main() {
   runApp(const MyApp());
