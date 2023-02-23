@@ -1,8 +1,19 @@
+import 'package:arosaje/navigation/navigation_delegate.dart';
+import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/connection_base_view_model.dart';
+
+abstract class SignUpRoute {
+  displaySignIn();
+  onSignUp();
+}
 
 class SignUpViewModel extends ConnectionBaseViewModel {
   //attributes
   String? _name;
+  RemoteDataManager _remoteDataManager = RemoteDataManager();
+  SignUpRoute _router;
+  //Constructors
+  SignUpViewModel(this._router);
 
   //accessors
   String? get name => _name;
@@ -45,5 +56,9 @@ class SignUpViewModel extends ConnectionBaseViewModel {
 
     isLoading = false;
     notifyListeners();
+  }
+
+  void displaySignIn() {
+    _router.displaySignIn();
   }
 }

@@ -62,21 +62,33 @@ class _SignInPageState extends State<SignInPage> {
                       height: 16.0,
                     ),
                     if (!widget._viewModel.isLoading)
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            widget._viewModel.signIn();
-
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           HomeScreen(HomeViewModel())),
-                            // );
-                          }
-                        },
-                        child: const Text('Sign In'),
+                      Column(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: Size(
+                                    MediaQuery.of(context).size.width, 40)),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                widget._viewModel.signIn();
+                              }
+                            },
+                            child: const Text('Sign In',
+                                style: TextStyle(fontSize: 18)),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: Size(
+                                    MediaQuery.of(context).size.width, 40)),
+                            onPressed: () {
+                              widget._viewModel.onSignUpClicked();
+                            },
+                            child: const Text('Sign up',
+                                style: TextStyle(fontSize: 18)),
+                          )
+                        ],
                       )
                     else
                       const Center(

@@ -3,18 +3,23 @@ import 'package:arosaje/navigation/navigation_path.dart';
 import 'package:arosaje/screens/home_screen.dart';
 import 'package:arosaje/screens/plant_details.dart';
 import 'package:arosaje/screens/sign_in.dart';
+import 'package:arosaje/screens/sign_up.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/home_view_model.dart';
 import 'package:arosaje/viewmodels/signin_viewmodel.dart';
+import 'package:arosaje/viewmodels/signup_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
-    implements HomeRouter, SignInRouter {
+    implements HomeRouter, SignInRouter, SignUpRoute {
   User? _currentUser;
 
+  //flag to control wich screen we want to display
   bool _displayPlantDetails = false;
+  bool _displaySignUp = false;
+
   final RemoteDataManager remoteDataManager = RemoteDataManager();
   @override
   Widget build(BuildContext context) {
@@ -23,14 +28,18 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
     final user = _currentUser;
 
     if (user == null) {
-      final startPage = SignInPage(SignInViewModel(this));
+      //do we want to login or register ?
+      final startPage = _displaySignUp == false
+          ? SignInPage(SignInViewModel(this))
+          : SignUpPage(SignUpViewModel(this));
+
       pages.add(MaterialPage(child: startPage));
     } else {
-      //TODO passer Le user au view model
       final homeScreen = HomeScreen(HomeViewModel(user, this));
       pages.add(MaterialPage(child: homeScreen));
 
       if (_displayPlantDetails == true) {
+        //TODO Ajouter un viewModel en constructeur et lui passer un navigator delegate
         pages.add(MaterialPage(child: PlantDetails()));
       }
     }
@@ -49,7 +58,10 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   bool onBackButtonTouched(dynamic result) {
     //Si il y a quelque chose a check avant d'afficher la page précédente implémenter ici,
     // si le check n'est pas valide renvoyer false et le retour est annulé
-    if (_displayPlantDetails) {
+
+    if (_displaySignUp) {
+      _displaySignUp = false;
+    } else if (_displayPlantDetails) {
       _displayPlantDetails = false;
     }
     notifyListeners();
@@ -90,5 +102,23 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   onLogout() {
     _currentUser = null;
     notifyListeners();
+  }
+
+  @override
+  displaySignIn() {
+    _displaySignUp = false;
+    notifyListeners();
+  }
+
+  @override
+  displaySignUp() {
+    _displaySignUp = true;
+    notifyListeners();
+  }
+
+  @override
+  onSignUp() {
+    // TODO: implement onSignUp
+    throw UnimplementedError();
   }
 }

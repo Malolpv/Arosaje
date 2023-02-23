@@ -4,6 +4,7 @@ import 'package:arosaje/viewmodels/connection_base_view_model.dart';
 
 abstract class SignInRouter {
   onLogin(User user);
+  displaySignUp();
 }
 
 class SignInViewModel extends ConnectionBaseViewModel {
@@ -48,6 +49,10 @@ class SignInViewModel extends ConnectionBaseViewModel {
       notifyListeners();
     }
     return valid;
+  }
+
+  void onSignUpClicked() {
+    _router.displaySignUp();
   }
 
   void signIn() async {
