@@ -6,10 +6,10 @@ import 'package:arosaje/screens/sign_in.dart';
 import 'package:arosaje/screens/sign_up.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/home_view_model.dart';
+import 'package:arosaje/viewmodels/plant_detail_view_model.dart';
 import 'package:arosaje/viewmodels/signin_viewmodel.dart';
 import 'package:arosaje/viewmodels/signup_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
@@ -39,8 +39,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       pages.add(MaterialPage(child: homeScreen));
 
       if (_displayPlantDetails == true) {
-        //TODO Ajouter un viewModel en constructeur et lui passer un navigator delegate
-        pages.add(MaterialPage(child: PlantDetails()));
+        //TODO passer une Plant et un navigator delegate au constructeur
+        pages
+            .add(MaterialPage(child: PlantDetails(PlantDetailViewModel(null))));
       }
     }
 

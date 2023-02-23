@@ -56,7 +56,7 @@ class SignInViewModel extends ConnectionBaseViewModel {
   }
 
   void signIn() async {
-    final email = this.getEmail;
+    final email = getEmail;
     final pass = getPassword;
     if (email != null && pass != null) {
       //TODO implementer le code de login

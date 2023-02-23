@@ -17,9 +17,9 @@ abstract class ConnectionBaseViewModel extends BaseViewModel {
   //errors attributes & accessors
   @protected
   String? emailErrorMessage;
-  @protected
   String? get getEmailErrorMessage => emailErrorMessage;
 
+  @protected
   String? passwordErrorMessage;
   String? get getPasswordErrorMessage => passwordErrorMessage;
 
@@ -70,7 +70,7 @@ abstract class ConnectionBaseViewModel extends BaseViewModel {
     if (email != null && password != null) {
       if (manageEmailValidation(email) && managePasswordValidation(password)) {
         //TODO api call to retrieve user datas
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
       }
     }
 

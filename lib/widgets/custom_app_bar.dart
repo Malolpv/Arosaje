@@ -42,11 +42,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
         IconButton(
           //TODO IMPLEMENTER ICONE ACCOUNT
           onPressed: () => throw Exception(),
-          icon: Icon(Icons.account_circle),
+          icon: const Icon(Icons.account_circle),
         ),
         IconButton(
             onPressed: () => openLogOutDialog(context),
-            icon: Icon(Icons.logout))
+            icon: const Icon(Icons.logout))
       ],
       centerTitle: true,
     );

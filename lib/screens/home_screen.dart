@@ -1,10 +1,9 @@
 import 'package:arosaje/viewmodels/home_view_model.dart';
-import 'package:arosaje/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   final HomeViewModel _viewModel;
-  const HomeScreen(this._viewModel);
+  const HomeScreen(this._viewModel, {super.key});
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();

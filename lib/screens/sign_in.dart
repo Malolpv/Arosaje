@@ -1,5 +1,3 @@
-import 'package:arosaje/screens/home_screen.dart';
-import 'package:arosaje/viewmodels/home_view_model.dart';
 import 'package:arosaje/viewmodels/signin_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +26,7 @@ class _SignInPageState extends State<SignInPage> {
           child: AnimatedBuilder(
               animation: widget._viewModel,
               builder: (context, child) {
-                final errorMessage = widget._viewModel.errorMessage;
+                final errorMessage = widget._viewModel.getErrorMessage;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -61,7 +59,7 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(
                       height: 16.0,
                     ),
-                    if (!widget._viewModel.isLoading)
+                    if (!widget._viewModel.getIsLoading)
                       Column(
                         children: [
                           ElevatedButton(

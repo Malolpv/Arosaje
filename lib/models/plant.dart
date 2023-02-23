@@ -1,5 +1,4 @@
 import 'package:arosaje/models/picture.dart';
-import 'package:flutter/material.dart';
 
 class Plant {
   //attributes

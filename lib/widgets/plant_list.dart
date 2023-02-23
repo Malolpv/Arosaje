@@ -2,6 +2,8 @@ import 'package:arosaje/models/plant.dart';
 import 'package:flutter/material.dart';
 
 class PlantList extends StatefulWidget {
+  const PlantList({super.key});
+
   @override
   State<PlantList> createState() => _PlantListState();
 }

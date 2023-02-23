@@ -6,13 +6,13 @@ class NavigationRouteParser extends RouteInformationParser<NavigationPath> {
   Future<NavigationPath> parseRouteInformation(
       RouteInformation routeInformation) {
     final uri = Uri.parse(routeInformation.location ?? "/");
-    final int? userId;
+    int? userId;
     if (uri.pathSegments.length >= 2) {
       userId = int.tryParse(uri.pathSegments[1]);
     } else {
       userId = null;
     }
-    return Future.value(const NavigationPath(userId: null));
+    return Future.value(NavigationPath(userId: userId));
   }
 
   @override

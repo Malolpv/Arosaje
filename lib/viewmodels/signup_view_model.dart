@@ -1,4 +1,3 @@
-import 'package:arosaje/navigation/navigation_delegate.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/connection_base_view_model.dart';
 
@@ -50,7 +49,7 @@ class SignUpViewModel extends ConnectionBaseViewModel {
           managePasswordValidation(password) &&
           manageNameValidation(name)) {
         //TODO api call to retrieve user datas
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
       }
     }
 
