@@ -1,6 +1,7 @@
 import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
 import 'package:arosaje/models/user.dart';
+import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
 
 abstract class HomeRouter {
@@ -18,6 +19,7 @@ class HomeViewModel extends BaseViewModel {
 
   //utils
   final HomeRouter _router;
+  final RemoteDataManager _remoteDataManager = RemoteDataManager();
 
   //constructors
   HomeViewModel(this._user, this._router);
@@ -41,10 +43,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<List<Plant>> fetchPlantList() async {
-    //TODO EDIT WITH AN API CALL
-    _plantList = [
-      Plant(1, "test", DateTime.now(), Picture(), List.from(<Picture>[]))
-    ];
+    _plantList = await _remoteDataManager.loadAllPlants(_user.id);
     notifyListeners();
     return Future.value(_plantList);
   }

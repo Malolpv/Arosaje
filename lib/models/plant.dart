@@ -1,3 +1,4 @@
+import 'package:arosaje/models/mission.dart';
 import 'package:arosaje/models/picture.dart';
 
 class Plant {

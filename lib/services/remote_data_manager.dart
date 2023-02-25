@@ -1,5 +1,7 @@
+import 'package:arosaje/models/mission.dart';
 import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
+import 'package:arosaje/models/profile.dart';
 import 'package:arosaje/models/user.dart';
 
 class RemoteDataManager {
@@ -23,6 +25,19 @@ class RemoteDataManager {
     return Future.value(<Plant>[
       Plant(1, "hortensia", DateTime.now(), Picture(), <Picture>[]),
       Plant(1, "tulipe", DateTime.now(), Picture(), <Picture>[])
+    ]);
+  }
+
+  Future<Profile> LoadProfileByUserId(int idUser) {
+    return Future.value(Profile());
+  }
+
+  Future<List<Mission>> LoadMissions(int idProfile) {
+    return Future.value(<Mission>[
+      Mission(
+          1, DateTime.now(), DateTime.now().add(const Duration(days: 7)), []),
+      Mission(
+          2, DateTime.now(), DateTime.now().add(const Duration(days: 14)), [])
     ]);
   }
 }
