@@ -20,32 +20,27 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            //TODO IMPLEMENTER ICONE ACCOUNT
-            onPressed: () => throw Exception(),
-            icon: const Icon(Icons.account_circle),
-          ),
-          IconButton(
               onPressed: () => widget._viewModel.onLogout(),
               icon: const Icon(Icons.logout))
         ],
         centerTitle: true,
       ),
       body: Column(children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 50,
-          decoration: const BoxDecoration(
-              color: Colors.greenAccent,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50))),
-          child: ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                "+",
-                style: TextStyle(fontSize: 30),
-              )),
-        ),
+        // Container(
+        //   width: MediaQuery.of(context).size.width,
+        //   height: 50,
+        //   decoration: const BoxDecoration(
+        //       color: Colors.greenAccent,
+        //       borderRadius: BorderRadius.only(
+        //           bottomLeft: Radius.circular(50),
+        //           bottomRight: Radius.circular(50))),
+        //   child: ElevatedButton(
+        //       onPressed: () {},
+        //       child: const Text(
+        //         "+",
+        //         style: TextStyle(fontSize: 30),
+        //       )),
+        // ),
         const SizedBox(
           height: 10,
         ),
@@ -75,7 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.all(10),
                           margin: const EdgeInsets.only(
                               left: 15, right: 15, top: 15),
-                          child: Text("Plante : $item"),
+                          child: Row(children: [
+                            Image.asset(
+                              item.mainPicture.path,
+                              height: 100,
+                              width: 100,
+                            ),
+                            Text(item.name)
+                          ]),
                         ),
                       );
                     },

@@ -1,3 +1,4 @@
+import 'package:arosaje/models/plant.dart';
 import 'package:arosaje/models/user.dart';
 import 'package:arosaje/navigation/navigation_path.dart';
 import 'package:arosaje/screens/home_screen.dart';
@@ -21,6 +22,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   bool _displaySignUp = false;
 
   final RemoteDataManager remoteDataManager = RemoteDataManager();
+
+  Plant? _currentPlant;
+
   @override
   Widget build(BuildContext context) {
     final pages = <Page<dynamic>>[];
@@ -39,9 +43,11 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       pages.add(MaterialPage(child: homeScreen));
 
       if (_displayPlantDetails == true) {
-        //TODO passer une Plant et un navigator delegate au constructeur
-        pages
-            .add(MaterialPage(child: PlantDetails(PlantDetailViewModel(null))));
+        final plant = _currentPlant;
+        if (plant != null) {
+          pages.add(
+              MaterialPage(child: PlantDetails(PlantDetailViewModel(plant))));
+        }
       }
     }
 
@@ -64,6 +70,7 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       _displaySignUp = false;
     } else if (_displayPlantDetails) {
       _displayPlantDetails = false;
+      _currentPlant = null;
     }
     notifyListeners();
     return true;
@@ -88,8 +95,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       NavigationPath(userId: _currentUser?.id);
 
   @override
-  displayPlantDetails() {
+  displayPlantDetails(final Plant current_plant) {
     _displayPlantDetails = true;
+    _currentPlant = current_plant;
     notifyListeners();
   }
 

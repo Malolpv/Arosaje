@@ -5,7 +5,7 @@ import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
 
 abstract class HomeRouter {
-  displayPlantDetails();
+  displayPlantDetails(final Plant currentPlant);
   onLogout();
 }
 
@@ -29,7 +29,7 @@ class HomeViewModel extends BaseViewModel {
   //methods
 
   void onPlantTaped(int index) {
-    _router.displayPlantDetails();
+    _router.displayPlantDetails(_plantList[index]);
   }
 
   void refreshPlantList() async {

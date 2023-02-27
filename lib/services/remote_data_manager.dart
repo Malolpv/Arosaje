@@ -11,7 +11,6 @@ class RemoteDataManager {
   ];
 
   Future<User?> loadCurrentUser(int idUser) {
-    //TODO UTILISER ID USER
     return Future.value(
         _usersUseCase.firstWhere((element) => element.id == idUser));
   }
