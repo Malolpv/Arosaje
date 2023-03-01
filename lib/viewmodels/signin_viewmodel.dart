@@ -65,7 +65,7 @@ class SignInViewModel extends ConnectionBaseViewModel {
         notifyListeners();
 
         await Future.delayed(const Duration(seconds: 2));
-        User? user = await _remoteDataManager.getUserByMailAndPass(email, pass);
+        User? user = await _remoteDataManager.checkUserCredentials(email, pass);
         if (user != null) {
           _router.onLogin(user);
         } else {

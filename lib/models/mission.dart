@@ -5,10 +5,16 @@ import 'package:arosaje/models/profile.dart';
 class Mission {
   //TODO implémenter correctement les attributs
 
-  final int _id;
-  final DateTime _start, _end;
+  final int id;
+  final int profileId;
+  final int plantId;
+  final String description;
+  final DateTime startDate;
+  final DateTime endDate;
 
-  final List<Picture> _pictures;
+  List<Picture> pictures = [];
 
-  Mission(this._id, this._start, this._end, this._pictures);
+  Mission(this.id, this.profileId, this.plantId, this.description,
+      this.startDate, this.endDate,
+      {this.pictures = const <Picture>[]});
 }

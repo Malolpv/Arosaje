@@ -95,9 +95,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       NavigationPath(userId: _currentUser?.id);
 
   @override
-  displayPlantDetails(final Plant current_plant) {
+  displayPlantDetails(final Plant currentPlant) {
     _displayPlantDetails = true;
-    _currentPlant = current_plant;
+    _currentPlant = currentPlant;
     notifyListeners();
   }
 

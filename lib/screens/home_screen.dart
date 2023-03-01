@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               left: 15, right: 15, top: 15),
                           child: Row(children: [
                             Image.asset(
-                              item.mainPicture.path,
+                              item.mainPicture,
                               height: 100,
                               width: 100,
                             ),
