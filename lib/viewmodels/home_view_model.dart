@@ -1,5 +1,6 @@
 import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
+import 'package:arosaje/models/profile.dart';
 import 'package:arosaje/models/user.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
@@ -13,7 +14,7 @@ class HomeViewModel extends BaseViewModel {
   //TODO ADD SERVICE CALL TO RETRIEVE DATA
 
   //attributes
-  final User _user;
+  final Profile _profile;
   List<Plant> _plantList = [];
   List<Plant> get plantList => _plantList;
 
@@ -22,7 +23,7 @@ class HomeViewModel extends BaseViewModel {
   final RemoteDataManager _remoteDataManager = RemoteDataManager();
 
   //constructors
-  HomeViewModel(this._user, this._router);
+  HomeViewModel(this._profile, this._router);
 
   //errors
 
@@ -43,7 +44,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<List<Plant>> fetchPlantList() async {
-    _plantList = await _remoteDataManager.loadAllPlants(_user.id);
+    _plantList = await _remoteDataManager.loadAllPlants(_profile.id);
     notifyListeners();
     return Future.value(_plantList);
   }

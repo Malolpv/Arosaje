@@ -1,4 +1,5 @@
 import 'package:arosaje/models/plant.dart';
+import 'package:arosaje/models/profile.dart';
 import 'package:arosaje/models/user.dart';
 import 'package:arosaje/navigation/navigation_path.dart';
 import 'package:arosaje/screens/home_screen.dart';
@@ -16,6 +17,7 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
     implements HomeRouter, SignInRouter, SignUpRoute {
   User? _currentUser;
+  Profile? _currentProfile;
 
   //flag to control wich screen we want to display
   bool _displayPlantDetails = false;
@@ -30,8 +32,8 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
     final pages = <Page<dynamic>>[];
 
     final user = _currentUser;
-
-    if (user == null) {
+    final profile = _currentProfile;
+    if (profile == null) {
       //do we want to login or register ?
       final startPage = _displaySignUp == false
           ? SignInPage(SignInViewModel(this))
@@ -39,7 +41,7 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
 
       pages.add(MaterialPage(child: startPage));
     } else {
-      final homeScreen = HomeScreen(HomeViewModel(user, this));
+      final homeScreen = HomeScreen(HomeViewModel(profile, this));
       pages.add(MaterialPage(child: homeScreen));
 
       if (_displayPlantDetails == true) {
@@ -102,14 +104,14 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   }
 
   @override
-  onLogin(User user) {
-    _currentUser = user;
+  onLogin(Profile profile) {
+    _currentProfile = profile;
     notifyListeners();
   }
 
   @override
   onLogout() {
-    _currentUser = null;
+    _currentProfile = null;
     notifyListeners();
   }
 

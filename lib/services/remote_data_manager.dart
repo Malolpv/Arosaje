@@ -44,7 +44,7 @@ class RemoteDataManager {
         .toList());
   }
 
-  Future<Profile> LoadProfileByUserUid(String userUid) {
+  Future<Profile?> LoadProfileByUserUid(String userUid) {
     return Future.value(
         _profileUseCase.firstWhere((element) => element.userUid == userUid));
   }

@@ -1,9 +1,10 @@
+import 'package:arosaje/models/profile.dart';
 import 'package:arosaje/models/user.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/connection_base_view_model.dart';
 
 abstract class SignInRouter {
-  onLogin(User user);
+  onLogin(Profile profile);
   displaySignUp();
 }
 
@@ -67,7 +68,13 @@ class SignInViewModel extends ConnectionBaseViewModel {
         await Future.delayed(const Duration(seconds: 2));
         User? user = await _remoteDataManager.checkUserCredentials(email, pass);
         if (user != null) {
-          _router.onLogin(user);
+          Profile? profile =
+              await _remoteDataManager.LoadProfileByUserUid(user.uid);
+          if (profile != null) {
+            _router.onLogin(profile);
+          } else {
+            errorMessage = "Impossible de retrouver votre compte";
+          }
         } else {
           errorMessage = "Impossible de retrouver votre compte";
         }
