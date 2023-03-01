@@ -1,7 +1,5 @@
-import 'package:arosaje/models/picture.dart';
 import 'package:arosaje/models/plant.dart';
 import 'package:arosaje/models/profile.dart';
-import 'package:arosaje/models/user.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
 import 'package:arosaje/viewmodels/base_view_model.dart';
 

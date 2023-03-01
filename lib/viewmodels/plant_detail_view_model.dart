@@ -12,8 +12,8 @@ class PlantDetailViewModel extends BaseViewModel {
   PlantDetailViewModel(this._plant);
 
   //utils
-  int _picturesNumber = 0;
-  int get picturesNumber => _picturesNumber;
+  List<Picture> _pictures = [];
+  List<Picture> get pictures => _pictures;
 
   final RemoteDataManager _remoteDataManager = RemoteDataManager();
 
@@ -21,10 +21,10 @@ class PlantDetailViewModel extends BaseViewModel {
 
   //methods
 
-  Future<List<Picture>> fetchPictures() {
+  Future<List<Picture>> fetchPictures() async {
     //TODO retrieve pictures by plant ID
-    _picturesNumber = 1;
+    _pictures = await _remoteDataManager.loadPlantPictures(_plant.id);
     notifyListeners();
-    return Future.value(plant.pictures);
+    return pictures;
   }
 }

@@ -30,6 +30,12 @@ class RemoteDataManager {
         DateTime.now().add(const Duration(days: 3))),
   ];
 
+  final List<Picture> _picturesUseCase = <Picture>[
+    Picture(1, 1, 1, DateTime.now().subtract(const Duration(days: 1))),
+    Picture(2, 1, null, DateTime.now()),
+    Picture(3, 2, 2, DateTime.now())
+  ];
+
   Future<User?> loadCurrentUser(int idUser) {
     return Future.value(
         _usersUseCase.firstWhere((element) => element.id == idUser));
@@ -55,5 +61,24 @@ class RemoteDataManager {
     return Future.value(_missionsUseCase
         .where((element) => element.profileId == idProfile)
         .toList());
+  }
+
+  Future<List<Picture>> loadPlantPictures(int plantId) {
+    return Future.value(_picturesUseCase
+        .where((element) => element.plantId == plantId)
+        .toList());
+  }
+
+  Future<List<Picture>> loadMissionPictures(int missionId) {
+    return Future.value(_picturesUseCase
+        .where((element) => element.missionId == missionId)
+        .toList());
+  }
+
+  Future<Picture> savePicture(String localPath, int plantId, int missionId) {
+    //TODO SAVE PICTURE
+    localPath = "image_test_plant.jpeg";
+    return Future.value(
+        Picture(4, plantId, missionId, DateTime.now(), path: localPath));
   }
 }
