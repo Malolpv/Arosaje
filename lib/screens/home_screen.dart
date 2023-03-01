@@ -71,10 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: const EdgeInsets.only(
                               left: 15, right: 15, top: 15),
                           child: Row(children: [
-                            Image.asset(
-                              item.mainPicture,
-                              height: 100,
-                              width: 100,
+                            Container(
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              child: Image.asset(
+                                item.mainPicture,
+                                height: 100,
+                                width: 100,
+                              ),
                             ),
                             Text(item.name)
                           ]),

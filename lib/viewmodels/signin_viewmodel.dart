@@ -69,7 +69,7 @@ class SignInViewModel extends ConnectionBaseViewModel {
         User? user = await _remoteDataManager.checkUserCredentials(email, pass);
         if (user != null) {
           Profile? profile =
-              await _remoteDataManager.LoadProfileByUserUid(user.uid);
+              await _remoteDataManager.loadProfileByUserUid(user.uid);
           if (profile != null) {
             _router.onLogin(profile);
           } else {

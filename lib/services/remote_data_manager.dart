@@ -17,8 +17,10 @@ class RemoteDataManager {
   ];
 
   final List<Plant> _plantsUseCase = <Plant>[
-    Plant(1, "hortensia", 1, "", <Comment>[], <Picture>[], <Mission>[]),
-    Plant(2, "tulipe", 1, "", <Comment>[], <Picture>[], <Mission>[])
+    Plant(1, "hortensia", 1, "image_test_plant.jpg", <Comment>[], <Picture>[],
+        <Mission>[]),
+    Plant(2, "tulipe", 1, "image_test_plant.jpg", <Comment>[], <Picture>[],
+        <Mission>[])
   ];
 
   final List<Mission> _missionsUseCase = <Mission>[
@@ -44,7 +46,7 @@ class RemoteDataManager {
         .toList());
   }
 
-  Future<Profile?> LoadProfileByUserUid(String userUid) {
+  Future<Profile?> loadProfileByUserUid(String userUid) {
     return Future.value(
         _profileUseCase.firstWhere((element) => element.userUid == userUid));
   }
