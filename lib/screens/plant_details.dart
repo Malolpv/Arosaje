@@ -1,7 +1,6 @@
 import 'package:arosaje/viewmodels/plant_detail_view_model.dart';
 import 'package:arosaje/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
 
 class PlantDetails extends StatefulWidget {
   final PlantDetailViewModel _viewModel;
@@ -12,11 +11,6 @@ class PlantDetails extends StatefulWidget {
 }
 
 class _PlantDetailState extends State<PlantDetails> {
-  // void _pickImage(ImageSource source) async {
-  //   final ImagePicker imagePicker = ImagePicker();
-  //   imagePicker.pickImage(source: source);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +37,7 @@ class _PlantDetailState extends State<PlantDetails> {
               height: 50,
               width: 180,
               child: ElevatedButton(
-                onPressed: () {
-                  //TODO CODE D'AJOUT DE PHOTO
-                },
+                onPressed: () => widget._viewModel.pickImage,
                 child: const Text(
                   "+",
                   style: TextStyle(
