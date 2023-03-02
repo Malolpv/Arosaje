@@ -33,7 +33,8 @@ class PlantDetailViewModel extends BaseViewModel {
     return pictures;
   }
 
-  void pickImage() {
+  void pickImage() async {
     _router.displayPickImage();
+    notifyListeners();
   }
 }

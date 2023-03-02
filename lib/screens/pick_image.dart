@@ -18,42 +18,58 @@ class _PickImageState extends State<PickImage> {
   void _pickImage(ImageSource source) async {
     final ImagePicker imagePicker = ImagePicker();
     final imageFile = await imagePicker.pickImage(source: source);
-    widget._viewModel.selectImage(imageFile);
+    if (imageFile != null) {
+      widget._viewModel.selectImage(imageFile);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Picture"),
+        title: const Text("Ajouter une photo"),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {
-                //TODO IMPLEMENTER LA VALIDATION
+                widget._viewModel.saveImage();
               },
               icon: const Icon(Icons.check))
         ],
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // if (widget._viewModel.image != null &&
-            //     widget._viewModel.getErrorMessage != null)
-            //   Image.file(File(widget._viewModel.getPath()))
-            // else
-            //   Text(widget._viewModel.getErrorMessage ?? ""),
+            AnimatedBuilder(
+                animation: widget._viewModel,
+                builder: (context, child) {
+                  return (widget._viewModel.image != null &&
+                          widget._viewModel.getErrorMessage == null)
+                      ? Image.file(File(widget._viewModel.image?.path ?? ""))
+                      : Text(widget._viewModel.getErrorMessage ?? "");
+                }),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    maximumSize:
+                        Size(MediaQuery.of(context).size.width / 2, 40)),
                 onPressed: () => _pickImage(ImageSource.camera),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text("Prendre une photo"),
                     Icon(Icons.camera)
                   ],
                 )),
+            const SizedBox(height: 15),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    maximumSize:
+                        Size(MediaQuery.of(context).size.width / 2, 40)),
                 onPressed: () => _pickImage(ImageSource.gallery),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text("Choisir une photo"),
                     Icon(Icons.photo)

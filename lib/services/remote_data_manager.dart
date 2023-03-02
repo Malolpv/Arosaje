@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:arosaje/models/comment.dart';
 import 'package:arosaje/models/mission.dart';
 import 'package:arosaje/models/picture.dart';
@@ -75,10 +77,7 @@ class RemoteDataManager {
         .toList());
   }
 
-  Future<Picture> savePicture(String localPath, int plantId, int missionId) {
+  void savePicture(Uint8List image, {int plantId = 0, int missionId = 0}) {
     //TODO SAVE PICTURE
-    localPath = "image_test_plant.jpeg";
-    return Future.value(
-        Picture(4, plantId, missionId, DateTime.now(), path: localPath));
   }
 }

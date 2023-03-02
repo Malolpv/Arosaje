@@ -17,7 +17,12 @@ import 'package:flutter/material.dart';
 
 class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
-    implements HomeRouter, SignInRouter, SignUpRoute, PlantDetailsRouter {
+    implements
+        HomeRouter,
+        SignInRouter,
+        SignUpRoute,
+        PlantDetailsRouter,
+        PickImageRouter {
   User? _currentUser;
   Profile? _currentProfile;
 
@@ -51,11 +56,15 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
         if (plant != null) {
           pages.add(MaterialPage(
               child: PlantDetails(PlantDetailViewModel(plant, this))));
+          if (_displayPickImage == true) {
+            pages.add(MaterialPage(
+                child: PickImage(PickImageViewModel(this, plant.id, 0))));
+          }
         }
       }
-      if (_displayPickImage == true) {
-        pages.add(MaterialPage(child: PickImage(PickImageViewModel())));
-      }
+      // if (_displayPickImage == true) {
+      //   pages.add(MaterialPage(child: PickImage(PickImageViewModel(this))));
+      // }
     }
 
     return Navigator(
@@ -145,6 +154,12 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   @override
   displayPickImage() {
     _displayPickImage = true;
+    notifyListeners();
+  }
+
+  @override
+  onImageSaved() {
+    _displayPickImage = false;
     notifyListeners();
   }
 }

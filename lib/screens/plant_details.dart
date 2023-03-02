@@ -37,7 +37,7 @@ class _PlantDetailState extends State<PlantDetails> {
               height: 50,
               width: 180,
               child: ElevatedButton(
-                onPressed: () => widget._viewModel.pickImage,
+                onPressed: () => widget._viewModel.pickImage(),
                 child: const Text(
                   "+",
                   style: TextStyle(
