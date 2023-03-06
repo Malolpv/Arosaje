@@ -2,13 +2,17 @@ import 'package:arosaje/models/plant.dart';
 import 'package:arosaje/models/profile.dart';
 import 'package:arosaje/models/user.dart';
 import 'package:arosaje/navigation/navigation_path.dart';
+import 'package:arosaje/screens/add_plant.dart';
 import 'package:arosaje/screens/home_screen.dart';
+import 'package:arosaje/screens/mission_list.dart';
 import 'package:arosaje/screens/pick_image.dart';
 import 'package:arosaje/screens/plant_details.dart';
 import 'package:arosaje/screens/sign_in.dart';
 import 'package:arosaje/screens/sign_up.dart';
 import 'package:arosaje/services/remote_data_manager.dart';
+import 'package:arosaje/viewmodels/add_plant_view_model.dart';
 import 'package:arosaje/viewmodels/home_view_model.dart';
+import 'package:arosaje/viewmodels/mission_list_view_model.dart';
 import 'package:arosaje/viewmodels/pick_image_view_model.dart';
 import 'package:arosaje/viewmodels/plant_detail_view_model.dart';
 import 'package:arosaje/viewmodels/signin_viewmodel.dart';
@@ -22,7 +26,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
         SignInRouter,
         SignUpRoute,
         PlantDetailsRouter,
-        PickImageRouter {
+        PickImageRouter,
+        MissionListRouter,
+        AddPlantRouter {
   User? _currentUser;
   Profile? _currentProfile;
 
@@ -30,6 +36,8 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   bool _displayPlantDetails = false;
   bool _displaySignUp = false;
   bool _displayPickImage = false;
+  bool _displayMissions = false;
+  bool _displayAddPlant = false;
 
   final RemoteDataManager remoteDataManager = RemoteDataManager();
 
@@ -48,7 +56,9 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
 
       pages.add(MaterialPage(child: startPage));
     } else {
-      final homeScreen = HomeScreen(HomeViewModel(profile, this));
+      final homeScreen = _displayMissions == false
+          ? HomeScreen(HomeViewModel(profile, this))
+          : MissionList(MissionListViewModel(this));
       pages.add(MaterialPage(child: homeScreen));
 
       if (_displayPlantDetails == true) {
@@ -61,6 +71,11 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
                 child: PickImage(PickImageViewModel(this, plant.id, 0))));
           }
         }
+      }
+
+      if (_displayAddPlant) {
+        pages.add(
+            MaterialPage(child: AddPlant(AddPlantViewModel(profile.id, this))));
       }
       // if (_displayPickImage == true) {
       //   pages.add(MaterialPage(child: PickImage(PickImageViewModel(this))));
@@ -91,6 +106,8 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
         _displayPlantDetails = false;
         _currentPlant = null;
       }
+    } else if (_displayAddPlant) {
+      _displayAddPlant = false;
     }
     notifyListeners();
     return true;
@@ -160,6 +177,30 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   @override
   onImageSaved() {
     _displayPickImage = false;
+    notifyListeners();
+  }
+
+  @override
+  displayMission() {
+    _displayMissions = true;
+    notifyListeners();
+  }
+
+  @override
+  displayPlants() {
+    _displayMissions = false;
+    notifyListeners();
+  }
+
+  @override
+  void savePlant() {
+    _displayAddPlant = false;
+    notifyListeners();
+  }
+
+  @override
+  void displayAddPlant() {
+    _displayAddPlant = true;
     notifyListeners();
   }
 }

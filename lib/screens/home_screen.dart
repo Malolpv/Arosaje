@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:arosaje/viewmodels/home_view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -20,27 +22,28 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+              onPressed: () => widget._viewModel.addPlant(),
+              icon: const Icon(Icons.add)),
+          IconButton(
               onPressed: () => widget._viewModel.onLogout(),
               icon: const Icon(Icons.logout))
         ],
         centerTitle: true,
       ),
       body: Column(children: [
-        // Container(
-        //   width: MediaQuery.of(context).size.width,
-        //   height: 50,
-        //   decoration: const BoxDecoration(
-        //       color: Colors.greenAccent,
-        //       borderRadius: BorderRadius.only(
-        //           bottomLeft: Radius.circular(50),
-        //           bottomRight: Radius.circular(50))),
-        //   child: ElevatedButton(
-        //       onPressed: () {},
-        //       child: const Text(
-        //         "+",
-        //         style: TextStyle(fontSize: 30),
-        //       )),
-        // ),
+        const SizedBox(
+          height: 15,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / 2,
+          height: 40,
+          child: ElevatedButton(
+              onPressed: () => widget._viewModel.displayMissions(),
+              child: const Text(
+                "Mes missions",
+                style: TextStyle(fontSize: 20),
+              )),
+        ),
         const SizedBox(
           height: 10,
         ),
@@ -75,13 +78,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15))),
-                              child: Image.asset(
-                                item.mainPicture,
+                              child: Image.file(
+                                File(item.mainPicture),
                                 height: 100,
                                 width: 100,
                               ),
                             ),
-                            Text(item.name)
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              item.name,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            )
                           ]),
                         ),
                       );

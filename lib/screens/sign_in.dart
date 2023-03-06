@@ -76,23 +76,23 @@ class _SignInPageState extends State<SignInPage> {
                                 style: TextStyle(fontSize: 18)),
                           ),
                           const SizedBox(height: 10),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Colors.green, width: 2),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                backgroundColor: Colors.white,
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width, 40)),
-                            onPressed: () {
-                              widget._viewModel.onSignUpClicked();
-                            },
-                            child: const Text('Sign up',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.green)),
-                          )
+                          // ElevatedButton(
+                          //   style: ElevatedButton.styleFrom(
+                          //       shape: const RoundedRectangleBorder(
+                          //           side: BorderSide(
+                          //               color: Colors.green, width: 2),
+                          //           borderRadius:
+                          //               BorderRadius.all(Radius.circular(5))),
+                          //       backgroundColor: Colors.white,
+                          //       minimumSize: Size(
+                          //           MediaQuery.of(context).size.width, 40)),
+                          //   onPressed: () {
+                          //     widget._viewModel.onSignUpClicked();
+                          //   },
+                          //   child: const Text('Sign up',
+                          //       style: TextStyle(
+                          //           fontSize: 18, color: Colors.green)),
+                          // )
                         ],
                       )
                     else

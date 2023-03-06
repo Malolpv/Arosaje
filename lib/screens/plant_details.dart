@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:arosaje/viewmodels/plant_detail_view_model.dart';
 import 'package:arosaje/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,25 +16,26 @@ class _PlantDetailState extends State<PlantDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: widget._viewModel.plant.name),
+      appBar: AppBar(title: Text(widget._viewModel.plant.name)),
       body: Center(
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              child: Column(
-                //TODO CHANGER LA SOURCE DE L'IMAGE
-                children: [
-                  Image.asset(
-                    widget._viewModel.plant.mainPicture,
-                    height: MediaQuery.of(context).size.height / 3,
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 15),
+            //   child: Column(
+            //     //TODO CHANGER LA SOURCE DE L'IMAGE
+            //     children: [
+            //       Image.asset(
+            //         widget._viewModel.plant.mainPicture,
+            //         height: MediaQuery.of(context).size.height / 3,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(
               height: 15,
             ),
+            const Text("Ajouter une photo"),
             SizedBox(
               height: 50,
               width: 180,
@@ -86,7 +89,7 @@ class _PlantDetailState extends State<PlantDetails> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Date : ${item.creationDate.toString().split(" ")[0]}",
+                                          "Photo du : ${item.creationDate.toString().split(" ")[0]}",
                                           textAlign: TextAlign.start,
                                           style: const TextStyle(
                                               fontSize: 20,
@@ -94,7 +97,7 @@ class _PlantDetailState extends State<PlantDetails> {
                                         ),
                                         const SizedBox(height: 15),
                                         //TODO CHANGER LA SOURCE DE L'IMAGE
-                                        Image.asset(item.path),
+                                        Image.file(File(item.path)),
                                       ],
                                     ),
                                   ));

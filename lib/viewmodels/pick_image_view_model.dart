@@ -35,8 +35,9 @@ class PickImageViewModel extends BaseViewModel {
     if (image != null) {
       final imageAsByte = await image.readAsBytes();
       final path = image.path;
-      _remoteDataManager.savePicture(imageAsByte,
-          plantId: _plantId, missionId: _missionId);
+      // _remoteDataManager.savePicture(imageAsByte,
+      //     plantId: _plantId, missionId: _missionId);
+      _remoteDataManager.savePictureLocal(path, _plantId, _missionId);
       _router.onImageSaved();
     } else {
       errorMessage = "Veuillez sélectionner une image";
